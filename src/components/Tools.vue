@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
 import Card from './Card.vue'
+import { Item, Category } from '@/types' // Import the types from the types.ts file
 
+// Define the component props
 const props = defineProps({
   selectedCategory: String,
 })
 
-const data = ref(null)
-const filteredCategory = ref(null)
-const searchedItems = ref([])
+// Use the defined types for your data
+const data = ref<Category[] | null>(null)
+const filteredCategory = ref<Category | null>(null) // Update this to be a Category or null
+const searchedItems = ref<Item[]>([]) // Update this to an array of Item
 const isSorted = ref(false) // New sorting state
-const featuredItems = ref([])
+const featuredItems = ref<Item[]>([]) // Update this to an array of Item
 const searchQuery = ref('')
 
 // Fetch data from JSON file
@@ -27,9 +30,8 @@ const fetchData = async () => {
 
     // Handle selectedCategory
     if (props.selectedCategory) {
-      filteredCategory.value = data.value.categories.find(
-        (category) => category.name === props.selectedCategory,
-      )
+      filteredCategory.value =
+        data.value.categories.find((category) => category.name === props.selectedCategory) || null
     }
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -51,7 +53,7 @@ const toggleSort = () => {
   const sortOrder = isSorted.value ? 1 : -1 // 1 for A-Z, -1 for Z-A
 
   // Define a reusable sorting function
-  const sortByName = (a, b) => sortOrder * a.name.localeCompare(b.name)
+  const sortByName = (a: Item, b: Item) => sortOrder * a.name.localeCompare(b.name)
 
   if (searchedItems.value.length) {
     // Sort searchedItems if they exist
@@ -73,9 +75,8 @@ watch(
   () => props.selectedCategory,
   (newCategory) => {
     if (data.value) {
-      filteredCategory.value = data.value.categories.find(
-        (category) => category.name === newCategory,
-      )
+      filteredCategory.value =
+        data.value.categories.find((category) => category.name === newCategory) || null
       searchedItems.value = []
     }
   },
