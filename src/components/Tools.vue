@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
 import Card from './Card.vue'
-import { Item, Category } from '@/types' // Import the types from the types.ts file
+import { Item, Category } from '../types' // Import the types from the types.ts file
 
 // Define the component props
 const props = defineProps({

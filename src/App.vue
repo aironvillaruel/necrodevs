@@ -3,7 +3,7 @@ import { RouterLink, RouterView, useRouter, useRoute } from 'vue-router'
 import Menubar from 'primevue/menubar'
 import { ref, onMounted } from 'vue'
 import Modal from './components/Modal.vue'
-import packageJson from '../package.json'
+import packageJson from '../package.json' // Import package.json to get the version
 
 const router = useRouter()
 const route = useRoute() // Get the current route
