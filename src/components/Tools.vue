@@ -2,40 +2,22 @@
 import { ref, watch, onMounted } from 'vue'
 import Card from './Card.vue'
 
-interface Item {
-  id: number
-  name: string
-  description: string
-  link: string
-  image: string
-  isFeatured: number
-}
-
-interface Category {
-  name: string
-  items: Item[]
-}
-
-interface Data {
-  categories: Category[]
-}
-
 const props = defineProps({
   selectedCategory: String,
 })
 
-const data = ref<Data | null>(null) // Explicitly type data
-const filteredCategory = ref<Category | null>(null) // Explicitly type filteredCategory
-const searchedItems = ref<Item[]>([])
-const isSorted = ref(false)
-const featuredItems = ref<Item[]>([])
+const data = ref(null)
+const filteredCategory = ref(null)
+const searchedItems = ref([])
+const isSorted = ref(false) // New sorting state
+const featuredItems = ref([])
 const searchQuery = ref('')
 
 // Fetch data from JSON file
 const fetchData = async () => {
   try {
     const response = await fetch('/data.json')
-    const jsonData: Data = await response.json() // Explicitly type JSON response
+    const jsonData = await response.json()
     data.value = jsonData
 
     // Filter featured items
@@ -45,8 +27,9 @@ const fetchData = async () => {
 
     // Handle selectedCategory
     if (props.selectedCategory) {
-      filteredCategory.value =
-        data.value.categories.find((category) => category.name === props.selectedCategory) || null
+      filteredCategory.value = data.value.categories.find(
+        (category) => category.name === props.selectedCategory,
+      )
     }
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -65,15 +48,19 @@ watch(searchQuery, (newQuery) => {
 // Toggle sorting of items
 const toggleSort = () => {
   isSorted.value = !isSorted.value
-  const sortOrder = isSorted.value ? 1 : -1
+  const sortOrder = isSorted.value ? 1 : -1 // 1 for A-Z, -1 for Z-A
 
-  const sortByName = (a: Item, b: Item) => sortOrder * a.name.localeCompare(b.name)
+  // Define a reusable sorting function
+  const sortByName = (a, b) => sortOrder * a.name.localeCompare(b.name)
 
   if (searchedItems.value.length) {
+    // Sort searchedItems if they exist
     searchedItems.value.sort(sortByName)
   } else if (filteredCategory.value) {
+    // Sort filteredCategory items if filteredCategory exists
     filteredCategory.value.items.sort(sortByName)
   } else {
+    // Sort featuredItems if no category is filtered
     featuredItems.value.sort(sortByName)
   }
 }
@@ -86,8 +73,9 @@ watch(
   () => props.selectedCategory,
   (newCategory) => {
     if (data.value) {
-      filteredCategory.value =
-        data.value.categories.find((category) => category.name === newCategory) || null
+      filteredCategory.value = data.value.categories.find(
+        (category) => category.name === newCategory,
+      )
       searchedItems.value = []
     }
   },

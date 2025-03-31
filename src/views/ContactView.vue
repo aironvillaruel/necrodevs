@@ -3,7 +3,7 @@ import { ref, reactive } from 'vue'
 import Swal from 'sweetalert2'
 import emailjs from 'emailjs-com'
 
-const successEmail = (message: string) => {
+const successEmail = (message) => {
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
