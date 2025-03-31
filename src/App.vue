@@ -139,7 +139,7 @@ const appVersion = packageJson.version // Extract the version
       </div>
       <div
         id="dropdown-content"
-        class="absolute hidden z-50 flex items-center bg-indigo-700 p-2 shadow-xl top-14 w-full flex-col"
+        class="absolute hidden z-50 flex items-center gap-3 bg-indigo-700 p-2 shadow-xl top-14 w-full flex-col"
       >
         <div class="flex flex-col gap-10 w-1/2 justify-center">
           <ul class="flex flex-col gap-5 p-2 items-center">
@@ -194,12 +194,15 @@ const appVersion = packageJson.version // Extract the version
             </li>
           </ul>
         </div>
+
         <button
           @click="openBtnModal"
           class="cursor-pointer text-white hover:scale-105 transition-all duration-300 border border-white p-2 rounded-md lexend-regular"
         >
           Support
         </button>
+
+        <h2 class="lexend-regular text-xs">V{{ appVersion }}</h2>
       </div>
     </header>
 
