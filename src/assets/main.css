@@ -1,0 +1,19 @@
+@import './base.css';
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+@import 'primeicons/primeicons.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-midlight: linear-gradient(to top, #f8fafc, #d4d4d8);
+  --color-middark: linear-gradient(to top, #0f172a, #09090b);
+}
+
+.bg-midlight {
+  background: var(--color-midlight);
+}
+
+.bg-middark {
+  background: var(--color-middark);
+}

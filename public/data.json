@@ -1,0 +1,212 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Artificial Intelligence",
+      "icon": "pi-android",
+      "items": [
+        {
+          "id": 1,
+          "name": "Chatgpt",
+          "description": "ChatGPT is an AI language model developed by OpenAI, capable of understanding and generating human-like text based on a wide range of prompts.",
+          "link": "https://chatgpt.com/",
+          "image": "chatgpt.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 2,
+          "name": "DeepSeek",
+          "description": "DeepSeek is a Chinese AI company focused on developing large language models (LLMs) and artificial general intelligence (AGI).",
+          "link": "https://www.deepseek.com/",
+          "image": "deepseek.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 3,
+          "name": "Claude",
+          "description": "Claude is an AI assistant created by Anthropic, designed to help with a wide range of tasks like writing, analysis, coding, and problem-solving.",
+          "link": "https://claude.ai/",
+          "image": "claude.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 4,
+          "name": "Blackbox",
+          "description": "Blackbox AI is an artificial intelligence platform tailored for software development, providing precise and context-aware coding assistance.",
+          "link": "https://www.blackbox.ai/",
+          "image": "blackbox.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 5,
+          "name": "Gemini",
+          "description": "Gemini is designed to understand and operate across different types of information, including text, code, images, audio, and video.",
+          "link": "https://gemini.google.com/app",
+          "image": "gemini.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 6,
+          "name": "Microsoft Copilot",
+          "description": "Microsoft Copilot is a cutting-edge AI companion designed to assist you with a variety of tasks and provide information, inspiration, and support.",
+          "link": "https://copilot.microsoft.com/chats/LVmK9UeqS8w91TWp1yFz1",
+          "image": "copilot.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 7,
+          "name": "Perplexity",
+          "description": "Perplexity is a free AI-powered search engine. It searches the internet in real-time, identifies relevant sources, and generates high-quality answers.",
+          "link": "https://www.perplexity.ai/",
+          "image": "perplexity.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 8,
+          "name": "DeepAI",
+          "description": "DeepAI is a platform that provides a wide range of advanced AI tools and services, including image recognition, text analysis, video generator, AI music generator, and language translation.",
+          "link": "https://deepai.org/",
+          "image": "deep.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 9,
+          "name": "Jasper",
+          "description": "Jasper AI is a generative AI platform designed for marketers to create high-quality, on-brand written and visual content, and improve marketing workflows.",
+          "link": "https://www.jasper.ai/",
+          "image": "jasper.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 10,
+          "name": "Copy.ai",
+          "description": "Copy.ai uses AI to help you generate marketing copy, blog posts, and other written content quickly and effectively.",
+          "link": "https://www.copy.ai/",
+          "image": "copy.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 11,
+          "name": "Runway ML",
+          "description": "Runway ML offers tools for creating and editing videos using AI, a research company building the next era of art, includes text-to-video capabilities. ",
+          "link": "https://runwayml.com/",
+          "image": "runaway.png",
+          "isFeatured": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "API",
+      "icon": "pi-cog",
+      "items": [
+        {
+          "id": 10,
+          "name": "ApyHub",
+          "description": "This Utility API allows you to convert currencies from a source currency to multiple target currencies.",
+          "link": "https://apyhub.com/utility/currency-conversion-multiple?ref=public_apis&utm_medium=website",
+          "image": "apyhub.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 11,
+          "name": "HTMLrev",
+          "description": "HTMLrev by Devluc provides selected free HTML templates for websites, landing pages, blogs, portfolios, ecommerce and admin dashboards.",
+          "link": "https://htmlrev.com/",
+          "image": "htmlrev.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 12,
+          "name": "Google Calendar",
+          "description": "Google Calendar API is a web-based API (Application Programming Interface) that allows developers to interact with Google Calendar.",
+          "link": "https://developers.google.com/calendar?ref=public_apis&utm_medium=website",
+          "image": "gcalendar.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 13,
+          "name": "Indie Pitcher",
+          "description": "IndiePitcher REST API allows you to send emails, manage your contacts, and generate portal session to manage user’s contact lists.",
+          "link": "https://docs.indiepitcher.com/api-reference/introduction",
+          "image": "indie.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 14,
+          "name": "Scrapfly",
+          "description": "Scrapfly offers a range of APIs that allow users to scrape web pages, capture screenshots, extract structured data using AI.",
+          "link": "https://scrapfly.io/?ref=public_apis&utm_medium=website",
+          "image": "scrapfly.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 15,
+          "name": "Dragon Ball",
+          "description": "Dragon Ball API grants users access to an extensive database featuring characters, images, transformations, and planets from the Dragon Ball.",
+          "link": "https://web.dragonball-api.com/?ref=public_apis&utm_medium=website",
+          "image": "dbz.png",
+          "isFeatured": 1
+        },
+        {
+          "id": 16,
+          "name": "Grib Stream",
+          "description": "This API provides access to retrieve historical and forecasted weather data by specifying parameters such as time range, and coordinates",
+          "link": "https://gribstream.com/?ref=public_apis&utm_medium=website",
+          "image": "gribstream.png",
+          "isFeatured": 0
+        },
+        {
+          "id": 17,
+          "name": "News API",
+          "description": "The main use of News API is to search through every article published by over 150,000 news sources and blogs in the last 5 years.",
+          "link": "https://newsapi.org/",
+          "image": "news.png",
+          "isFeatured": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Illustration",
+      "icon": "pi-pencil",
+      "items": [
+        {
+          "id": 18,
+          "name": "Undraw",
+          "description": "Undraw is a constantly updated collection of beautiful svg images that you can use completely free and without attribution.",
+          "link": "https://undraw.co",
+          "image": "undraw.png"
+        },
+        {
+          "id": 19,
+          "name": "Open Doodles",
+          "description": "Open Doodles is a set of free illustrations. You can copy, edit, remix, share, or redraw these images for any purpose without restriction under copyright",
+          "link": "https://www.opendoodles.com/",
+          "image": "opendoodles.png"
+        },
+        {
+          "id": 20,
+          "name": "DrawKit",
+          "description": "DrawKit was founded in 2018, starting as a small collection of 20 free-to-use, hand-drawn UI illustrations.",
+          "link": "https://www.drawkit.com/",
+          "image": "drawkit.png"
+        },
+        {
+          "id": 21,
+          "name": "Blush",
+          "description": "Blush is a free illustration library that allows you to create and customize beautiful illustrations for your projects.",
+          "link": "https://blush.design/",
+          "image": "blush.png"
+        },
+        {
+          "id": 22,
+          "name": "Absurd Design",
+          "description": "Absurd Design is a collection of free illustrations that are absurd, surreal, and whimsical.",
+          "link": "https://absurd.design/",
+          "image": "absurd.png"
+        }
+      ]
+    }
+  ]
+}
