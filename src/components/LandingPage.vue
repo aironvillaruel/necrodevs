@@ -1,4 +1,9 @@
 <script setup lang="ts">
+// Extend Navigator interface
+interface Navigator {
+  connection?: any
+}
+
 import Button from 'primevue/button'
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
@@ -6,6 +11,7 @@ import SkeletonHomeVue from './SkeletonHome.vue'
 
 const router = useRouter() // Initialize the router instance
 const homeSkeleton = ref(true) // Initially show the skeleton loader
+const connectionType = ref<string | null>(null)
 
 const navigateToTools = async () => {
   router.push({ path: '/tools' }) // Navigate to /tools
@@ -18,6 +24,8 @@ onMounted(() => {
   let delay = 3000 // Default delay
 
   if (connection) {
+    connectionType.value = connection.effectiveType // Access connection type
+    console.log(`Connection type: ${connectionType.value}`)
     // Adjust delay based on effective type
     switch (connection.effectiveType) {
       case '4g':
@@ -32,6 +40,8 @@ onMounted(() => {
       default:
         delay = 3000 // Fallback to default
     }
+  } else {
+    console.log('Connection information is not available.')
   }
 
   console.log(`Setting skeleton loader delay to: ${delay}ms`)

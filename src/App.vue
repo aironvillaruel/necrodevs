@@ -9,6 +9,8 @@ const router = useRouter()
 const route = useRoute() // Get the current route
 const isDarkMode = ref(false)
 const supportModal = ref(false)
+const openModal = ref(false) // Define openModal as a reactive property
+
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value
   localStorage.setItem('darkMode', isDarkMode.value.toString())
@@ -52,6 +54,10 @@ const navigateToContact = () => navigateWithLoader('/contact')
 const showDropdown = () => {
   const dropdown = document.getElementById('dropdown-content')
   dropdown.classList.toggle('hidden')
+}
+
+const toggleModal = () => {
+  openModal.value = !openModal.value // Toggle modal state
 }
 
 const appVersion = packageJson.version // Extract the version
