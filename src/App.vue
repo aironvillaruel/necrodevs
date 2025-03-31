@@ -8,7 +8,7 @@ import packageJson from '../package.json'
 const router = useRouter()
 const route = useRoute() // Get the current route
 const isDarkMode = ref(false)
-const supportModal = ref(null)
+const supportModal = ref(false)
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value
   localStorage.setItem('darkMode', isDarkMode.value.toString())

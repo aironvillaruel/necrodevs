@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Landing from '../views/Landing.vue'
+import Landing from '../views/Landing.vue' // Ensure Landing.vue is properly typed
 import ToolView from '../views/ToolView.vue'
 import ContactView from '../views/ContactView.vue'
 import AboutView from '../views/AboutView.vue'

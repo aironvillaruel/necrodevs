@@ -5,6 +5,13 @@ import Sidebar from '../components/Sidebar.vue'
 import Tools from '../components/Tools.vue'
 import SkeletonTools from '../components/SkeletonTools.vue'
 
+// Extend Navigator interface
+interface Navigator {
+  connection?: any
+  mozConnection?: any
+  webkitConnection?: any
+}
+
 const route = useRoute()
 const router = useRouter()
 const selectedCategory = ref(route.params.category || null) // Get category from route params
