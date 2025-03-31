@@ -16,7 +16,7 @@ const route = useRoute()
 const router = useRouter()
 const selectedCategory = ref(route.params.category || null) // Get category from route params
 const toolSkeleton = ref(true) // Initially show the skeleton loader
-const searchQuery = ref(route.params.search || '') // Get searchQuery from route params
+const searchQuery = ref<string | undefined>(route.params.search || undefined) // Handle undefined
 console.log(searchQuery)
 
 // Handle category selection from the Sidebar
