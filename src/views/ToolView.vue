@@ -9,7 +9,8 @@ const route = useRoute()
 const router = useRouter()
 
 // Define types for category and search
-const selectedCategory = ref<string | null>(route.params.category as string | null) // Cast to string | null
+const selectedCategory = ref<string | undefined>(route.params.category as string | undefined)
+
 const searchQuery = ref<string>(
   route.params.search
     ? Array.isArray(route.params.search)
@@ -17,6 +18,9 @@ const searchQuery = ref<string>(
       : route.params.search
     : '',
 ) // Handle string[] or null cases
+
+// Declare toolSkeleton as a ref to control visibility of the SkeletonTools component
+const toolSkeleton = ref<boolean>(true) // Initially true to show the skeleton loader
 
 console.log(searchQuery)
 
@@ -38,7 +42,8 @@ const handleSearch = (query: string) => {
 watch(
   () => route.params,
   (newParams) => {
-    selectedCategory.value = newParams.category ? (newParams.category as string) : null // Ensure it's a string or null
+    // Assign undefined instead of null to match the type string | undefined
+    selectedCategory.value = newParams.category ? (newParams.category as string) : undefined
     searchQuery.value = newParams.searchQuery ? (newParams.searchQuery as string) : '' // Ensure it's a string or empty string
   },
 )
@@ -66,7 +71,7 @@ onMounted(() => {
 
   console.log(`Setting skeleton loader delay to: ${delay}ms`)
   setTimeout(() => {
-    toolSkeleton.value = false
+    toolSkeleton.value = false // After the delay, hide the skeleton loader
   }, delay)
 })
 </script>
