@@ -12,7 +12,7 @@ defineProps({
     class="md:max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-slate-800 dark:border-slate-700 p-4"
   >
     <a :href="link" target="_blank">
-      <img class="rounded-t-lg w-full h-1/2" :src="`/public/${image}`" :alt="name" />
+      <img class="rounded-t-lg w-full h-1/2" :src="`/${image}`" :alt="name" />
     </a>
     <div class="p-5 flex flex-col gap-1 md:gap-3">
       <a :href="link" target="_blank">
