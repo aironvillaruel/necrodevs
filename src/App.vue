@@ -21,10 +21,13 @@ const toggleDarkMode = () => {
 }
 
 const openBtnModal = () => {
-  // const modal = document.getElementById('btnModal')
-  // modal.style.display = 'block'
-  supportModal.value.openModal()
-  console.log('test')
+  if (supportModal.value) {
+    // Check if supportModal is not null
+    supportModal.value.openModal()
+    console.log('test')
+  } else {
+    console.error('Support modal is not available')
+  }
 }
 // Retrieve dark mode preference on component mount
 onMounted(() => {
@@ -40,7 +43,9 @@ onMounted(() => {
 
 const navigateWithLoader = async (path: string) => {
   const dropdown = document.getElementById('dropdown-content')
-  dropdown.classList.add('hidden')
+  if (dropdown) {
+    dropdown.classList.add('hidden')
+  }
   router.push({ path }) // Navigate to the route
 }
 

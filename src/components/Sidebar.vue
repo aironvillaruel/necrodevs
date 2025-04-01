@@ -1,20 +1,32 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router' // Import useRouter
+import { useRouter } from 'vue-router'
 
-const categories = ref([]) // Reactive variable to store the fetched categories
-const searchItem = ref([]) // Reactive variable for filtered items (not categories)
+interface Item {
+  name: string
+  description: string
+}
+
+interface Category {
+  id: string
+  name: string
+  icon: string
+  items: Item[]
+}
+
+const categories = ref<Category[]>([]) // Type the categories as an array of Category objects
+const searchItem = ref<Item[]>([]) // Type the search items as an array of Item objects
 const searchQuery = ref('')
 
-const router = useRouter() // Access the router instance
+const router = useRouter()
 
 // Fetch the data from the external JSON file
 onMounted(async () => {
   try {
-    const response = await fetch('/data.json') // Fetch the JSON file from the public folder
+    const response = await fetch('/data.json')
     const jsonData = await response.json()
-    categories.value = jsonData.categories // Store the categories in the reactive variable
-    searchItem.value = jsonData.categories.flatMap((category) => category.items) // Flatten the categories' items initially
+    categories.value = jsonData.categories
+    searchItem.value = jsonData.categories.flatMap((category: Category) => category.items)
   } catch (error) {
     console.error('Error fetching categories:', error)
   }
@@ -24,7 +36,6 @@ onMounted(async () => {
 const searchItems = () => {
   const query = searchQuery.value.toLowerCase()
 
-  // Filter the items across all categories based on the search query
   searchItem.value = categories.value.flatMap((category) =>
     category.items.filter(
       (item) =>
@@ -36,7 +47,7 @@ const searchItems = () => {
 // Emit the selected category or filtered results to the parent component
 const emit = defineEmits(['selectCategory', 'updateFilteredCategories', 'updateSearchedItem'])
 const selectCategory = (categoryName: string) => {
-  closeSidebar() // Close the sidebar after selecting a category;
+  closeSidebar()
   emit('selectCategory', categoryName)
 }
 
@@ -49,7 +60,7 @@ const closeSidebar = () => {
   const sidebar = document.getElementById('sidebar')
   sidebar.classList.add('hidden')
 }
-// Watch for changes in the search query and emit the searched items
+
 watch(searchQuery, () => {
   searchItems()
   emit('updateSearchedItem', searchItem.value)
