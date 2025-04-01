@@ -2,13 +2,13 @@
 import { RouterLink, RouterView, useRouter, useRoute } from 'vue-router'
 import Menubar from 'primevue/menubar'
 import { ref, onMounted } from 'vue'
-import Modal from './components/Modal.vue'
 import packageJson from '../package.json' // Import package.json to get the version
+import Modal from './components/Modal.vue'
 
 const router = useRouter()
 const route = useRoute() // Get the current route
 const isDarkMode = ref(false)
-const supportModal = ref(null)
+const supportModal = ref<typeof Modal | null>(null) // Explicitly type the ref
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value
   localStorage.setItem('darkMode', isDarkMode.value.toString())
@@ -56,7 +56,9 @@ const navigateToContact = () => navigateWithLoader('/contact')
 
 const showDropdown = () => {
   const dropdown = document.getElementById('dropdown-content')
-  dropdown.classList.toggle('hidden')
+  if (dropdown) {
+    dropdown.classList.toggle('hidden')
+  }
 }
 
 const appVersion = packageJson.version // Extract the version
