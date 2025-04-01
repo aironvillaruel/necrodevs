@@ -5,18 +5,19 @@ import Sidebar from '../components/Sidebar.vue'
 import Tools from '../components/Tools.vue'
 import SkeletonTools from '../components/SkeletonTools.vue'
 
-// Extend Navigator interface
-interface Navigator {
-  connection?: any
-  mozConnection?: any
-  webkitConnection?: any
-}
-
 const route = useRoute()
 const router = useRouter()
-const selectedCategory = ref(route.params.category || null) // Get category from route params
-const toolSkeleton = ref(true) // Initially show the skeleton loader
-const searchQuery = ref(route.params.search || '') // Get searchQuery from route params
+
+// Define types for category and search
+const selectedCategory = ref<string | null>(route.params.category as string | null) // Cast to string | null
+const searchQuery = ref<string>(
+  route.params.search
+    ? Array.isArray(route.params.search)
+      ? route.params.search[0]
+      : route.params.search
+    : '',
+) // Handle string[] or null cases
+
 console.log(searchQuery)
 
 // Handle category selection from the Sidebar
@@ -37,8 +38,8 @@ const handleSearch = (query: string) => {
 watch(
   () => route.params,
   (newParams) => {
-    selectedCategory.value = newParams.category || null
-    searchQuery.value = newParams.searchQuery || ''
+    selectedCategory.value = newParams.category ? (newParams.category as string) : null // Ensure it's a string or null
+    searchQuery.value = newParams.searchQuery ? (newParams.searchQuery as string) : '' // Ensure it's a string or empty string
   },
 )
 
