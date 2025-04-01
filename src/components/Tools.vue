@@ -1,37 +1,41 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
+import { Item, Category, Data } from '../types' // Ensure the types match the structure of the JSON
 import Card from './Card.vue'
-import { Item, Category } from '../types' // Import the types from the types.ts file
 
 // Define the component props
 const props = defineProps({
   selectedCategory: String,
 })
 
-// Use the defined types for your data
-const data = ref<Category[] | null>(null)
-const filteredCategory = ref<Category | null>(null) // Update this to be a Category or null
-const searchedItems = ref<Item[]>([]) // Update this to an array of Item
-const isSorted = ref(false) // New sorting state
-const featuredItems = ref<Item[]>([]) // Update this to an array of Item
+// Correctly define the data type as an object with a categories array
+const data = ref<Data | null>(null)
+const filteredCategory = ref<Category | null>(null)
+const searchedItems = ref<Item[]>([])
+const isSorted = ref(false)
+const featuredItems = ref<Item[]>([])
 const searchQuery = ref('')
 
 // Fetch data from JSON file
 const fetchData = async () => {
   try {
     const response = await fetch('/data.json')
-    const jsonData = await response.json()
+    const jsonData: Data = await response.json() // Ensure the response matches the correct type
     data.value = jsonData
 
-    // Filter featured items
-    featuredItems.value = data.value.categories.flatMap((category) =>
-      category.items.filter((item) => item.isFeatured === 1),
-    )
+    if (data.value && data.value.categories) {
+      // Filter featured items
+      featuredItems.value = data.value.categories.flatMap((category) =>
+        category.items.filter((item) => item.isFeatured === 1),
+      )
 
-    // Handle selectedCategory
-    if (props.selectedCategory) {
-      filteredCategory.value =
-        data.value.categories.find((category) => category.name === props.selectedCategory) || null
+      // Handle selectedCategory
+      if (props.selectedCategory) {
+        filteredCategory.value =
+          data.value.categories.find((category) => category.name === props.selectedCategory) || null
+      }
+    } else {
+      console.error('Fetched data does not contain categories:', data.value)
     }
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -40,7 +44,7 @@ const fetchData = async () => {
 
 // Watch for changes in searchQuery and filter items dynamically
 watch(searchQuery, (newQuery) => {
-  if (data.value) {
+  if (data.value && Array.isArray(data.value.categories)) {
     searchedItems.value = data.value.categories.flatMap((category) =>
       category.items.filter((item) => item.name.toLowerCase().includes(newQuery.toLowerCase())),
     )
@@ -58,10 +62,10 @@ const toggleSort = () => {
   if (searchedItems.value.length) {
     // Sort searchedItems if they exist
     searchedItems.value.sort(sortByName)
-  } else if (filteredCategory.value) {
+  } else if (filteredCategory.value && filteredCategory.value.items) {
     // Sort filteredCategory items if filteredCategory exists
     filteredCategory.value.items.sort(sortByName)
-  } else {
+  } else if (featuredItems.value) {
     // Sort featuredItems if no category is filtered
     featuredItems.value.sort(sortByName)
   }
@@ -74,7 +78,7 @@ onMounted(() => {
 watch(
   () => props.selectedCategory,
   (newCategory) => {
-    if (data.value) {
+    if (data.value && data.value.categories) {
       filteredCategory.value =
         data.value.categories.find((category) => category.name === newCategory) || null
       searchedItems.value = []

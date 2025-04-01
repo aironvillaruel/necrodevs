@@ -1,4 +1,4 @@
-// src/types.ts
+// types.ts
 export interface Item {
   id: number
   name: string
@@ -9,6 +9,12 @@ export interface Item {
 }
 
 export interface Category {
+  id: number
   name: string
+  icon: string
   items: Item[]
+}
+
+export interface Data {
+  categories: Category[]
 }

@@ -53,12 +53,16 @@ const selectCategory = (categoryName: string) => {
 
 const toggleSidebar = () => {
   const sidebar = document.getElementById('sidebar')
-  sidebar.classList.remove('hidden')
+  if (sidebar) {
+    sidebar.classList.remove('hidden')
+  }
 }
 
 const closeSidebar = () => {
   const sidebar = document.getElementById('sidebar')
-  sidebar.classList.add('hidden')
+  if (sidebar) {
+    sidebar.classList.add('hidden')
+  }
 }
 
 watch(searchQuery, () => {
